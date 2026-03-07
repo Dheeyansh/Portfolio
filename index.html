@@ -15,243 +15,315 @@
   <link rel="stylesheet" href="style.css">
 </head>
 
-<body class="bg-zinc-950 text-white overflow-x-hidden selection:bg-cyan-400 selection:text-black">
+<body class="bg-zinc-950 text-white overflow-x-hidden">
+  <!-- ===================== BACKDROP EFFECTS ===================== -->
+  <div class="page-grid"></div>
+  <div class="page-noise"></div>
+
   <!-- ===================== PROJECT MODAL ===================== -->
-  <div id="project-portal" class="fixed inset-0 z-[100] bg-zinc-950/92 backdrop-blur-2xl overflow-y-auto hidden">
-    <div class="max-w-6xl mx-auto px-6 py-10">
+  <div id="project-portal" class="project-portal hidden" aria-hidden="true">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 py-8 sm:py-10">
       <button
         id="closePortalBtn"
-        class="fixed top-5 right-5 w-12 h-12 glass rounded-2xl flex items-center justify-center text-xl hover:bg-cyan-400 hover:text-black transition-all duration-300 z-50 shadow-soft"
-        aria-label="Close project (Esc)"
+        class="portal-close"
+        aria-label="Close project"
       >
         <i class="fas fa-times"></i>
       </button>
 
-      <div class="fixed bottom-6 right-6 hidden md:flex items-center gap-2 glass rounded-2xl px-4 py-2 text-xs z-50 shadow-soft">
-        <span class="kbd">Esc</span><span class="text-zinc-400">Close</span>
-        <span class="mx-2 text-zinc-600">•</span>
-        <span class="kbd">←</span><span class="kbd">→</span><span class="text-zinc-400">Media</span>
+      <div class="hidden md:flex portal-hint">
+        <span class="kbd">Esc</span><span class="hint-text">Close</span>
+        <span class="hint-dot">•</span>
+        <span class="kbd">←</span><span class="kbd">→</span><span class="hint-text">Media</span>
       </div>
 
-      <div id="portal-content" class="grid lg:grid-cols-2 gap-10 mt-14"></div>
+      <div id="portal-content" class="grid lg:grid-cols-[1.1fr_0.9fr] gap-8 lg:gap-10 mt-14"></div>
     </div>
   </div>
 
   <!-- ===================== NAV ===================== -->
-  <nav class="fixed top-0 left-0 right-0 z-50 nav-glass border-b border-white/8 px-6 py-4">
-    <div class="max-w-7xl mx-auto flex justify-between items-center">
-      <a href="#hero" class="flex items-center gap-3">
-        <div class="w-11 h-11 rounded-2xl bg-cyan-400 flex items-center justify-center text-black font-extrabold logo-font shadow-glow">
-          DK
-        </div>
-        <div>
-          <div class="logo-font text-lg font-bold leading-5">Dheeraj Kumar</div>
-          <div class="text-xs text-zinc-400">Mechanical Design Engineer • CAD • CAE</div>
-        </div>
-      </a>
+  <nav class="site-nav">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6">
+      <div class="nav-shell">
+        <a href="#hero" class="brand-wrap">
+          <div class="brand-mark">DK</div>
+          <div>
+            <div class="brand-name">Dheeraj Kumar</div>
+            <div class="brand-role">Mechanical Design • CAD • CAE</div>
+          </div>
+        </a>
 
-      <div class="hidden md:flex gap-8 text-sm font-medium text-zinc-300">
-        <a href="#projects" class="hover:text-cyan-400 transition-colors">Projects</a>
-        <a href="#skills" class="hover:text-cyan-400 transition-colors">Skills</a>
-        <a href="#contact" class="hover:text-cyan-400 transition-colors">Contact</a>
+        <div class="hidden md:flex nav-links">
+          <a href="#about">About</a>
+          <a href="#projects">Projects</a>
+          <a href="#skills">Skills</a>
+          <a href="#contact">Contact</a>
+        </div>
+
+        <div class="hidden md:flex items-center gap-3">
+          <a href="Dheeraj_Kumar_Resume.pdf" download class="btn btn-ghost">Resume</a>
+          <a href="#contact" class="btn btn-primary">Contact</a>
+        </div>
+
+        <button id="mobileMenuBtn" class="md:hidden mobile-menu-btn" aria-label="Open menu">
+          <i class="fas fa-bars"></i>
+        </button>
       </div>
 
-      <div class="flex items-center gap-3">
-        <a
-          href="Dheeraj_Kumar_Resume.pdf"
-          download
-          class="hidden sm:inline-flex px-5 py-2.5 glass rounded-xl font-bold text-sm hover:bg-white/10 transition-all shadow-soft"
-        >
-          Resume
-        </a>
-        <a href="#contact" class="px-5 py-2.5 bg-white text-black rounded-xl font-bold text-sm hover:bg-cyan-400 transition-all shadow-soft">
-          Get in Touch
-        </a>
+      <div id="mobileMenu" class="mobile-menu hidden md:hidden">
+        <a href="#about">About</a>
+        <a href="#projects">Projects</a>
+        <a href="#skills">Skills</a>
+        <a href="#contact">Contact</a>
+        <a href="Dheeraj_Kumar_Resume.pdf" download>Download Resume</a>
       </div>
     </div>
   </nav>
 
   <!-- ===================== HERO ===================== -->
-  <section id="hero" class="hero-bg min-h-screen flex items-center pt-24 relative overflow-hidden">
-    <div class="orb orb-1"></div>
-    <div class="orb orb-2"></div>
-    <div class="orb orb-3"></div>
+  <section id="hero" class="hero-section">
+    <div class="hero-orb hero-orb-1"></div>
+    <div class="hero-orb hero-orb-2"></div>
 
-    <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-14 items-center w-full relative z-10">
-      <div class="space-y-7">
-        <div class="inline-flex items-center gap-2 px-4 py-2 glass rounded-full text-cyan-300 text-xs font-bold tracking-widest uppercase shadow-soft">
-          <i class="fa-solid fa-gear"></i> Mechanical Design Portfolio
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 pt-28 md:pt-32 pb-20 md:pb-24 relative z-10">
+      <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+        <div class="space-y-7 reveal">
+          <div class="eyebrow">
+            <i class="fa-solid fa-gear"></i>
+            Mechanical Engineering Portfolio
+          </div>
+
+          <div class="space-y-5">
+            <h1 class="hero-title">
+              Mechanical Design &
+              <span>Simulation Portfolio</span>
+            </h1>
+
+            <p class="hero-copy">
+              B.Tech Mechanical Engineering student building practical skills in
+              <strong>SolidWorks, AutoCAD, ANSYS Workbench, and MATLAB</strong>.
+              My work focuses on CAD modeling, sheet metal and weldment design,
+              engineering analysis, and validation-driven mechanical problem solving.
+            </p>
+          </div>
+
+          <div class="flex flex-wrap gap-3">
+            <a href="#projects" class="btn btn-primary btn-lg">Explore Projects</a>
+            <a href="Dheeraj_Kumar_Resume.pdf" download class="btn btn-ghost btn-lg">Download Resume</a>
+          </div>
+
+          <div class="hero-metrics">
+            <div class="metric-card">
+              <div class="metric-value">16+</div>
+              <div class="metric-label">Portfolio Projects</div>
+            </div>
+            <div class="metric-card">
+              <div class="metric-value">CAD</div>
+              <div class="metric-label">Design & Documentation</div>
+            </div>
+            <div class="metric-card">
+              <div class="metric-value">CAE</div>
+              <div class="metric-label">Analysis & Validation</div>
+            </div>
+          </div>
         </div>
 
-        <h1 class="text-5xl md:text-6xl xl:text-7xl font-extrabold leading-tight logo-font tracking-tight">
-          Mechanical <span class="text-cyan-400">Design Engineer</span><br>
-          Building Practical CAD & CAE Solutions
-        </h1>
+        <div class="reveal">
+          <div class="hero-panel">
+            <div class="panel-top">
+              <div>
+                <div class="panel-label">Core Focus</div>
+                <div class="panel-title">Design, Analysis, and Engineering Validation</div>
+                <p class="panel-copy">
+                  I create mechanical models and evaluate their performance using structured CAD workflow,
+                  technical drawings, and simulation-based validation.
+                </p>
+              </div>
+              <div class="panel-icon">
+                <i class="fa-solid fa-cube"></i>
+              </div>
+            </div>
 
-        <p class="text-zinc-300 text-lg leading-relaxed max-w-2xl">
-          Mechanical design engineer with hands-on experience in
-          <b>SolidWorks (Assemblies, Sheet Metal, Weldments)</b>,
-          <b>ANSYS (Structural & Thermal Analysis)</b>, and
-          <b>MATLAB</b> for engineering validation, design optimization, and technical problem-solving.
-        </p>
+            <div class="hero-panel-grid">
+              <div class="mini-panel">
+                <div class="mini-label">CAD Tools</div>
+                <div class="mini-value">SolidWorks • AutoCAD</div>
+              </div>
+              <div class="mini-panel">
+                <div class="mini-label">Simulation</div>
+                <div class="mini-value">ANSYS Structural & Thermal</div>
+              </div>
+              <div class="mini-panel">
+                <div class="mini-label">Validation</div>
+                <div class="mini-value">MATLAB & Theory Comparison</div>
+              </div>
+              <div class="mini-panel">
+                <div class="mini-label">Opportunity</div>
+                <div class="mini-value">Internship / Design Role</div>
+              </div>
+            </div>
 
-        <div class="flex flex-wrap gap-3">
-          <a href="#projects" class="px-7 py-3.5 bg-cyan-400 text-black font-extrabold rounded-2xl hover:scale-[1.02] transition-transform shadow-glow">
-            Explore Projects
-          </a>
-          <a
-            href="Dheeraj_Kumar_Resume.pdf"
-            download
-            class="px-7 py-3.5 glass font-bold rounded-2xl hover:bg-white/10 transition-all shadow-soft"
-          >
-            Download Resume
-          </a>
-        </div>
-
-        <div class="grid sm:grid-cols-3 gap-3 pt-2">
-          <div class="metric-card">
-            <div class="metric-number">16+</div>
-            <div class="metric-label">Engineering Projects</div>
-          </div>
-          <div class="metric-card">
-            <div class="metric-number">CAD</div>
-            <div class="metric-label">Design & Modeling</div>
-          </div>
-          <div class="metric-card">
-            <div class="metric-number">CAE</div>
-            <div class="metric-label">Simulation & Validation</div>
+            <div class="hero-links">
+              <a target="_blank" href="https://www.linkedin.com/in/dheerajkrishna1223" class="inline-link-card">
+                <i class="fab fa-linkedin"></i>
+                <span>LinkedIn</span>
+              </a>
+              <a target="_blank" href="https://x.com/Dheerajkum893" class="inline-link-card">
+                <i class="fa-brands fa-x-twitter"></i>
+                <span>X</span>
+              </a>
+              <a href="Dheeraj_Kumar_Resume.pdf" download class="inline-link-card">
+                <i class="fa-solid fa-file-arrow-down"></i>
+                <span>Resume</span>
+              </a>
+            </div>
           </div>
         </div>
       </div>
+    </div>
+  </section>
 
-      <div class="relative floating-card">
-        <div class="glass rounded-[2.5rem] p-8 border-white/10 shadow-panel">
-          <div class="flex items-start justify-between gap-6">
-            <div>
-              <div class="text-sm text-zinc-400">Core Expertise</div>
-              <div class="text-2xl md:text-3xl font-extrabold logo-font">SolidWorks + ANSYS</div>
-              <div class="text-zinc-400 mt-2">Design • Drafting • Simulation • Validation</div>
-            </div>
-            <div class="w-16 h-16 rounded-2xl bg-cyan-400/10 border border-cyan-400/20 flex items-center justify-center">
-              <i class="fa-solid fa-cube text-cyan-300 text-2xl"></i>
-            </div>
-          </div>
+  <!-- ===================== ABOUT ===================== -->
+  <section id="about" class="section-pad reveal">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6">
+      <div class="section-head">
+        <div>
+          <div class="section-kicker">About</div>
+          <h2 class="section-title">A Mechanical Engineering Student Focused on Practical Design Work</h2>
+        </div>
+      </div>
 
-          <div class="mt-8 grid grid-cols-2 gap-4">
-            <div class="mini-card">
-              <div class="text-xs text-zinc-400">Deliverables</div>
-              <div class="font-bold">CAD Models & Reports</div>
-            </div>
-            <div class="mini-card">
-              <div class="text-xs text-zinc-400">Validation</div>
-              <div class="font-bold">ANSYS + MATLAB</div>
-            </div>
-            <div class="mini-card">
-              <div class="text-xs text-zinc-400">Focus</div>
-              <div class="font-bold">Design for Performance</div>
-            </div>
-            <div class="mini-card">
-              <div class="text-xs text-zinc-400">Availability</div>
-              <div class="font-bold">Internship / Collaboration</div>
-            </div>
-          </div>
+      <div class="grid lg:grid-cols-[1.05fr_0.95fr] gap-8 lg:gap-10">
+        <div class="content-panel">
+          <p class="lead-paragraph">
+            I am a Mechanical Engineering student with growing hands-on experience in
+            CAD modeling, sheet metal design, weldments, engineering drawings, and CAE-based validation.
+            My goal is to build industry-ready capability in mechanical design by combining
+            modeling accuracy, engineering fundamentals, and simulation-driven analysis.
+          </p>
 
-          <div class="mt-8 flex gap-3 flex-wrap">
-            <a class="glass rounded-xl px-4 py-2 hover:bg-white/10 transition shadow-soft" target="_blank" href="https://www.linkedin.com/in/dheerajkrishna1223">
-              <i class="fab fa-linkedin text-cyan-300"></i>
-              <span class="ml-2 text-sm font-semibold">LinkedIn</span>
-            </a>
-            <a class="glass rounded-xl px-4 py-2 hover:bg-white/10 transition shadow-soft" target="_blank" href="https://x.com/Dheerajkum893">
-              <i class="fa-brands fa-x-twitter text-cyan-300"></i>
-              <span class="ml-2 text-sm font-semibold">X</span>
-            </a>
-            <a class="glass rounded-xl px-4 py-2 hover:bg-white/10 transition shadow-soft" href="Dheeraj_Kumar_Resume.pdf" download>
-              <i class="fa-solid fa-file-arrow-down text-cyan-300"></i>
-              <span class="ml-2 text-sm font-semibold">Resume</span>
-            </a>
-          </div>
+          <p class="body-paragraph">
+            Through academic and self-driven projects, I have worked on assemblies,
+            fabrication-oriented parts, structural components, and ANSYS validation studies.
+            I am especially interested in roles related to <strong>Mechanical Design, CAD Engineering, Product Development, and CAE</strong>,
+            where I can contribute, learn quickly, and improve through real engineering work.
+          </p>
         </div>
 
-        <div class="absolute -inset-12 bg-cyan-400/10 blur-[100px] rounded-full -z-10"></div>
+        <div class="grid sm:grid-cols-2 gap-4">
+          <div class="info-card">
+            <div class="info-icon"><i class="fa-solid fa-drafting-compass"></i></div>
+            <h3>Design Workflow</h3>
+            <p>Part modeling, assemblies, weldments, sheet metal, drawings, and project presentation.</p>
+          </div>
+          <div class="info-card">
+            <div class="info-icon"><i class="fa-solid fa-calculator"></i></div>
+            <h3>Engineering Thinking</h3>
+            <p>Using theory, calculations, and comparisons to support design decisions.</p>
+          </div>
+          <div class="info-card">
+            <div class="info-icon"><i class="fa-solid fa-chart-column"></i></div>
+            <h3>Simulation Focus</h3>
+            <p>Structural and thermal studies in ANSYS with emphasis on interpretation and validation.</p>
+          </div>
+          <div class="info-card">
+            <div class="info-icon"><i class="fa-solid fa-briefcase"></i></div>
+            <h3>Career Direction</h3>
+            <p>Seeking internships and junior opportunities in Mechanical Design and CAE.</p>
+          </div>
+        </div>
       </div>
     </div>
   </section>
 
   <!-- ===================== PROJECTS ===================== -->
-  <section id="projects" class="py-28 reveal">
-    <div class="max-w-7xl mx-auto px-6">
-      <div class="flex flex-col md:flex-row md:justify-between md:items-end gap-8 mb-10">
+  <section id="projects" class="section-pad reveal">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6">
+      <div class="section-head projects-head">
         <div>
-          <h2 class="text-4xl md:text-5xl font-extrabold logo-font">Featured Projects</h2>
-          <p class="text-zinc-400 mt-2">A collection of mechanical design, sheet metal, weldment, and engineering analysis projects.</p>
-          <p class="text-zinc-500 text-sm mt-1"><span id="count"></span> projects displayed</p>
+          <div class="section-kicker">Projects</div>
+          <h2 class="section-title">Selected Mechanical Design and Analysis Work</h2>
+          <p class="section-copy">
+            A recruiter-friendly collection of assembly, sheet metal, weldment, and engineering analysis projects.
+          </p>
+          <p class="section-count"><span id="count"></span> projects displayed</p>
         </div>
 
-        <div class="flex flex-col md:flex-row gap-3 md:items-center">
-          <div class="glass rounded-2xl px-4 py-3 flex items-center gap-3 shadow-soft">
-            <i class="fa-solid fa-magnifying-glass text-zinc-400"></i>
+        <div class="controls-wrap">
+          <div class="search-box">
+            <i class="fa-solid fa-magnifying-glass"></i>
             <input
               id="search"
-              class="bg-transparent outline-none text-sm text-white placeholder-zinc-500 w-64"
-              placeholder="Search: chair, ansys, sheet metal..."
               type="text"
+              placeholder="Search projects: chair, ansys, sheet metal..."
             />
           </div>
 
-          <div class="flex flex-wrap gap-3" id="filters">
-            <button data-cat="all" class="px-5 py-2 rounded-full bg-white text-black font-extrabold text-sm">All</button>
-            <button data-cat="assembly" class="px-5 py-2 rounded-full glass hover:bg-white/5 text-sm">Assemblies</button>
-            <button data-cat="sheetmetal" class="px-5 py-2 rounded-full glass hover:bg-white/5 text-sm">Sheet Metal</button>
-            <button data-cat="weldments" class="px-5 py-2 rounded-full glass hover:bg-white/5 text-sm">Weldments</button>
-            <button data-cat="analysis" class="px-5 py-2 rounded-full glass hover:bg-white/5 text-sm">ANSYS / Analysis</button>
+          <div id="filters" class="filter-wrap">
+            <button data-cat="all">All</button>
+            <button data-cat="assembly">Assemblies</button>
+            <button data-cat="sheetmetal">Sheet Metal</button>
+            <button data-cat="weldments">Weldments</button>
+            <button data-cat="analysis">Analysis</button>
           </div>
         </div>
       </div>
 
-      <div id="project-grid" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-7"></div>
+      <div id="project-grid" class="grid sm:grid-cols-2 xl:grid-cols-3 gap-6"></div>
     </div>
   </section>
 
   <!-- ===================== SKILLS ===================== -->
-  <section id="skills" class="py-28 bg-zinc-900/35 border-y border-white/5 reveal">
-    <div class="max-w-7xl mx-auto px-6">
-      <h2 class="text-4xl md:text-5xl font-extrabold logo-font">Skills</h2>
-      <p class="text-zinc-400 mt-2 mb-12">Core tools and capabilities across design, simulation, and engineering documentation.</p>
+  <section id="skills" class="section-pad section-muted reveal">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6">
+      <div class="section-head">
+        <div>
+          <div class="section-kicker">Skills</div>
+          <h2 class="section-title">Tools and Capabilities</h2>
+          <p class="section-copy">Core competencies across CAD, CAE, documentation, and engineering support work.</p>
+        </div>
+      </div>
 
-      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-7">
-        <div class="glass rounded-[2rem] p-7 shadow-panel skill-card">
-          <div class="flex items-center gap-3 mb-4">
-            <i class="fa-solid fa-drafting-compass text-cyan-300 text-xl"></i>
-            <h3 class="text-xl font-extrabold">Mechanical Design</h3>
+      <div class="grid md:grid-cols-2 xl:grid-cols-3 gap-6">
+        <div class="skill-panel">
+          <div class="skill-top">
+            <i class="fa-solid fa-drafting-compass"></i>
+            <h3>Mechanical Design</h3>
           </div>
-          <ul class="space-y-2.5 text-zinc-300">
-            <li><i class="fa-solid fa-check text-cyan-400 mr-2"></i>SolidWorks (Assembly, Sheet Metal, Weldments)</li>
-            <li><i class="fa-solid fa-check text-cyan-400 mr-2"></i>AutoCAD Drafting</li>
-            <li><i class="fa-solid fa-check text-cyan-400 mr-2"></i>2D Drawings & Modeling Fundamentals</li>
+          <ul>
+            <li>SolidWorks Assemblies</li>
+            <li>Sheet Metal Design</li>
+            <li>Weldments and Structural Frames</li>
+            <li>AutoCAD Drafting</li>
+            <li>2D Drawings and Documentation</li>
           </ul>
         </div>
 
-        <div class="glass rounded-[2rem] p-7 shadow-panel skill-card">
-          <div class="flex items-center gap-3 mb-4">
-            <i class="fa-solid fa-chart-line text-cyan-300 text-xl"></i>
-            <h3 class="text-xl font-extrabold">CAE / Simulation</h3>
+        <div class="skill-panel">
+          <div class="skill-top">
+            <i class="fa-solid fa-chart-line"></i>
+            <h3>CAE / Simulation</h3>
           </div>
-          <ul class="space-y-2.5 text-zinc-300">
-            <li><i class="fa-solid fa-check text-cyan-400 mr-2"></i>ANSYS Static Structural</li>
-            <li><i class="fa-solid fa-check text-cyan-400 mr-2"></i>ANSYS Steady-State Thermal</li>
-            <li><i class="fa-solid fa-check text-cyan-400 mr-2"></i>Validation, Comparison & Reporting</li>
+          <ul>
+            <li>ANSYS Static Structural</li>
+            <li>Steady-State Thermal Analysis</li>
+            <li>Stress and Deformation Interpretation</li>
+            <li>Result Comparison and Validation</li>
+            <li>Engineering Reporting</li>
           </ul>
         </div>
 
-        <div class="glass rounded-[2rem] p-7 shadow-panel skill-card">
-          <div class="flex items-center gap-3 mb-4">
-            <i class="fa-solid fa-code text-cyan-300 text-xl"></i>
-            <h3 class="text-xl font-extrabold">Programming & Tools</h3>
+        <div class="skill-panel">
+          <div class="skill-top">
+            <i class="fa-solid fa-code"></i>
+            <h3>Programming & Support Tools</h3>
           </div>
-          <ul class="space-y-2.5 text-zinc-300">
-            <li><i class="fa-solid fa-check text-cyan-400 mr-2"></i>MATLAB (Validation, Plotting, Theory Comparison)</li>
-            <li><i class="fa-solid fa-check text-cyan-400 mr-2"></i>HTML • CSS • JavaScript</li>
-            <li><i class="fa-solid fa-check text-cyan-400 mr-2"></i>Excel for Engineering Data</li>
+          <ul>
+            <li>MATLAB for Validation and Plotting</li>
+            <li>HTML, CSS, JavaScript</li>
+            <li>Excel for Engineering Data</li>
+            <li>Technical Presentation Skills</li>
+            <li>Portfolio and Report Preparation</li>
           </ul>
         </div>
       </div>
@@ -259,93 +331,81 @@
   </section>
 
   <!-- ===================== CONTACT ===================== -->
-  <section id="contact" class="py-28 reveal">
-    <div class="max-w-7xl mx-auto px-6">
-      <h2 class="text-4xl md:text-5xl font-extrabold logo-font">Contact</h2>
-      <p class="text-zinc-400 mt-2 mb-12">Available for internships, freelance design work, and technical collaborations.</p>
+  <section id="contact" class="section-pad reveal">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6">
+      <div class="section-head">
+        <div>
+          <div class="section-kicker">Contact</div>
+          <h2 class="section-title">Open to Internships and Engineering Opportunities</h2>
+          <p class="section-copy">
+            Available for internship roles, entry-level design opportunities, and technical collaboration.
+          </p>
+        </div>
+      </div>
 
-      <div class="grid lg:grid-cols-2 gap-10">
-        <div class="space-y-6">
-          <div class="glass rounded-2xl p-6 flex items-center gap-4 shadow-soft contact-card">
-            <i class="fa-solid fa-envelope text-cyan-300 text-2xl"></i>
+      <div class="grid lg:grid-cols-[0.95fr_1.05fr] gap-8 lg:gap-10">
+        <div class="space-y-4">
+          <div class="contact-card">
+            <i class="fa-solid fa-envelope"></i>
             <div>
-              <div class="text-zinc-400 text-sm">Email</div>
-              <a class="font-bold hover:text-cyan-300" href="mailto:dk3300649@gmail.com">dk3300649@gmail.com</a>
+              <div class="contact-label">Email</div>
+              <a href="mailto:dk3300649@gmail.com">dk3300649@gmail.com</a>
             </div>
           </div>
 
-          <div class="glass rounded-2xl p-6 flex items-center gap-4 shadow-soft contact-card">
-            <i class="fa-solid fa-phone text-cyan-300 text-2xl"></i>
+          <div class="contact-card">
+            <i class="fa-solid fa-phone"></i>
             <div>
-              <div class="text-zinc-400 text-sm">Phone</div>
-              <a class="font-bold hover:text-cyan-300" href="tel:+918882332974">+91 888 233 2974</a>
+              <div class="contact-label">Phone</div>
+              <a href="tel:+918882332974">+91 888 233 2974</a>
             </div>
           </div>
 
-          <div class="glass rounded-2xl p-6 flex items-center gap-4 shadow-soft contact-card">
-            <i class="fab fa-linkedin text-cyan-300 text-2xl"></i>
+          <div class="contact-card">
+            <i class="fab fa-linkedin"></i>
             <div>
-              <div class="text-zinc-400 text-sm">LinkedIn</div>
-              <a class="font-bold hover:text-cyan-300" target="_blank" href="https://www.linkedin.com/in/dheerajkrishna1223">
+              <div class="contact-label">LinkedIn</div>
+              <a target="_blank" href="https://www.linkedin.com/in/dheerajkrishna1223">
                 linkedin.com/in/dheerajkrishna1223
               </a>
             </div>
           </div>
 
-          <div class="glass rounded-2xl p-6 flex items-center gap-4 shadow-soft contact-card">
-            <i class="fa-brands fa-x-twitter text-cyan-300 text-2xl"></i>
+          <div class="contact-card">
+            <i class="fa-brands fa-x-twitter"></i>
             <div>
-              <div class="text-zinc-400 text-sm">X (Twitter)</div>
-              <a class="font-bold hover:text-cyan-300" target="_blank" href="https://x.com/Dheerajkum893">
-                x.com/Dheerajkum893
-              </a>
+              <div class="contact-label">X (Twitter)</div>
+              <a target="_blank" href="https://x.com/Dheerajkum893">x.com/Dheerajkum893</a>
             </div>
           </div>
 
-          <div class="glass rounded-2xl p-6 flex items-center gap-4 shadow-soft contact-card">
-            <i class="fa-solid fa-file-pdf text-cyan-300 text-2xl"></i>
+          <div class="contact-card">
+            <i class="fa-solid fa-file-pdf"></i>
             <div>
-              <div class="text-zinc-400 text-sm">Resume</div>
-              <a class="font-bold hover:text-cyan-300" href="Dheeraj_Kumar_Resume.pdf" download>
-                Download Resume PDF
-              </a>
+              <div class="contact-label">Resume</div>
+              <a href="Dheeraj_Kumar_Resume.pdf" download>Download Resume PDF</a>
             </div>
           </div>
         </div>
 
         <form
-          class="glass rounded-[2rem] p-7 space-y-4 shadow-panel"
-          onsubmit="event.preventDefault(); alert('Thank you for your interest! Please contact via email or LinkedIn for direct communication.');"
+          class="contact-form"
+          onsubmit="event.preventDefault(); alert('Thank you for your message. Please contact me directly by email or LinkedIn.');"
         >
-          <input
-            type="text"
-            placeholder="Your Name"
-            required
-            class="w-full px-5 py-3.5 bg-white/5 rounded-2xl text-white placeholder-zinc-500 focus:outline-none focus:ring-2 focus:ring-cyan-400"
-          />
-          <input
-            type="email"
-            placeholder="Your Email"
-            required
-            class="w-full px-5 py-3.5 bg-white/5 rounded-2xl text-white placeholder-zinc-500 focus:outline-none focus:ring-2 focus:ring-cyan-400"
-          />
-          <textarea
-            placeholder="Your Message"
-            rows="5"
-            required
-            class="w-full px-5 py-3.5 bg-white/5 rounded-2xl text-white placeholder-zinc-500 focus:outline-none focus:ring-2 focus:ring-cyan-400"
-          ></textarea>
-          <button
-            type="submit"
-            class="w-full py-3.5 bg-cyan-400 text-black font-extrabold rounded-2xl hover:scale-[1.01] transition-transform shadow-glow"
-          >
-            Send Message
-          </button>
-          <p class="text-xs text-zinc-500 text-center">This is a static portfolio website. Please use email or LinkedIn for direct contact.</p>
+          <div class="form-head">
+            <h3>Send a Message</h3>
+            <p>This portfolio is static. For direct communication, please use email or LinkedIn.</p>
+          </div>
+
+          <input type="text" placeholder="Your Name" required>
+          <input type="email" placeholder="Your Email" required>
+          <textarea rows="5" placeholder="Your Message" required></textarea>
+
+          <button type="submit" class="btn btn-primary w-full justify-center">Send Message</button>
         </form>
       </div>
 
-      <div class="pt-14 text-center text-zinc-600 text-sm">
+      <div class="footer-note">
         © <span id="year"></span> Dheeraj Kumar • Mechanical Design & CAE Portfolio
       </div>
     </div>
