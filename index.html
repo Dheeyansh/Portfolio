@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dheeraj Kumar | Mechanical Design & CAE Portfolio</title>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Optional for GitHub Pages -->
+  <!-- Example: <meta name="site-base" content="/Mechanical_Portfolio/"> -->
+
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="bg-zinc-950 text-white overflow-x-hidden selection:bg-cyan-400 selection:text-black">
+  <!-- ===================== PROJECT MODAL ===================== -->
+  <div id="project-portal" class="fixed inset-0 z-[100] bg-zinc-950/92 backdrop-blur-2xl overflow-y-auto hidden">
+    <div class="max-w-6xl mx-auto px-6 py-10">
+      <button
+        id="closePortalBtn"
+        class="fixed top-5 right-5 w-12 h-12 glass rounded-2xl flex items-center justify-center text-xl hover:bg-cyan-400 hover:text-black transition-all duration-300 z-50 shadow-soft"
+        aria-label="Close project (Esc)"
+      >
+        <i class="fas fa-times"></i>
+      </button>
+
+      <div class="fixed bottom-6 right-6 hidden md:flex items-center gap-2 glass rounded-2xl px-4 py-2 text-xs z-50 shadow-soft">
+        <span class="kbd">Esc</span><span class="text-zinc-400">Close</span>
+        <span class="mx-2 text-zinc-600">•</span>
+        <span class="kbd">←</span><span class="kbd">→</span><span class="text-zinc-400">Media</span>
+      </div>
+
+      <div id="portal-content" class="grid lg:grid-cols-2 gap-10 mt-14"></div>
+    </div>
+  </div>
+
+  <!-- ===================== NAV ===================== -->
+  <nav class="fixed top-0 left-0 right-0 z-50 nav-glass border-b border-white/8 px-6 py-4">
+    <div class="max-w-7xl mx-auto flex justify-between items-center">
+      <a href="#hero" class="flex items-center gap-3">
+        <div class="w-11 h-11 rounded-2xl bg-cyan-400 flex items-center justify-center text-black font-extrabold logo-font shadow-glow">
+          DK
+        </div>
+        <div>
+          <div class="logo-font text-lg font-bold leading-5">Dheeraj Kumar</div>
+          <div class="text-xs text-zinc-400">Mechanical Design Engineer • CAD • CAE</div>
+        </div>
+      </a>
+
+      <div class="hidden md:flex gap-8 text-sm font-medium text-zinc-300">
+        <a href="#projects" class="hover:text-cyan-400 transition-colors">Projects</a>
+        <a href="#skills" class="hover:text-cyan-400 transition-colors">Skills</a>
+        <a href="#contact" class="hover:text-cyan-400 transition-colors">Contact</a>
+      </div>
+
+      <div class="flex items-center gap-3">
+        <a
+          href="Dheeraj_Kumar_Resume.pdf"
+          download
+          class="hidden sm:inline-flex px-5 py-2.5 glass rounded-xl font-bold text-sm hover:bg-white/10 transition-all shadow-soft"
+        >
+          Resume
+        </a>
+        <a href="#contact" class="px-5 py-2.5 bg-white text-black rounded-xl font-bold text-sm hover:bg-cyan-400 transition-all shadow-soft">
+          Get in Touch
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ===================== HERO ===================== -->
+  <section id="hero" class="hero-bg min-h-screen flex items-center pt-24 relative overflow-hidden">
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+
+    <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-14 items-center w-full relative z-10">
+      <div class="space-y-7">
+        <div class="inline-flex items-center gap-2 px-4 py-2 glass rounded-full text-cyan-300 text-xs font-bold tracking-widest uppercase shadow-soft">
+          <i class="fa-solid fa-gear"></i> Mechanical Design Portfolio
+        </div>
+
+        <h1 class="text-5xl md:text-6xl xl:text-7xl font-extrabold leading-tight logo-font tracking-tight">
+          Mechanical <span class="text-cyan-400">Design Engineer</span><br>
+          Building Practical CAD & CAE Solutions
+        </h1>
+
+        <p class="text-zinc-300 text-lg leading-relaxed max-w-2xl">
+          Mechanical design engineer with hands-on experience in
+          <b>SolidWorks (Assemblies, Sheet Metal, Weldments)</b>,
+          <b>ANSYS (Structural & Thermal Analysis)</b>, and
+          <b>MATLAB</b> for engineering validation, design optimization, and technical problem-solving.
+        </p>
+
+        <div class="flex flex-wrap gap-3">
+          <a href="#projects" class="px-7 py-3.5 bg-cyan-400 text-black font-extrabold rounded-2xl hover:scale-[1.02] transition-transform shadow-glow">
+            Explore Projects
+          </a>
+          <a
+            href="Dheeraj_Kumar_Resume.pdf"
+            download
+            class="px-7 py-3.5 glass font-bold rounded-2xl hover:bg-white/10 transition-all shadow-soft"
+          >
+            Download Resume
+          </a>
+        </div>
+
+        <div class="grid sm:grid-cols-3 gap-3 pt-2">
+          <div class="metric-card">
+            <div class="metric-number">16+</div>
+            <div class="metric-label">Engineering Projects</div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-number">CAD</div>
+            <div class="metric-label">Design & Modeling</div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-number">CAE</div>
+            <div class="metric-label">Simulation & Validation</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="relative floating-card">
+        <div class="glass rounded-[2.5rem] p-8 border-white/10 shadow-panel">
+          <div class="flex items-start justify-between gap-6">
+            <div>
+              <div class="text-sm text-zinc-400">Core Expertise</div>
+              <div class="text-2xl md:text-3xl font-extrabold logo-font">SolidWorks + ANSYS</div>
+              <div class="text-zinc-400 mt-2">Design • Drafting • Simulation • Validation</div>
+            </div>
+            <div class="w-16 h-16 rounded-2xl bg-cyan-400/10 border border-cyan-400/20 flex items-center justify-center">
+              <i class="fa-solid fa-cube text-cyan-300 text-2xl"></i>
+            </div>
+          </div>
+
+          <div class="mt-8 grid grid-cols-2 gap-4">
+            <div class="mini-card">
+              <div class="text-xs text-zinc-400">Deliverables</div>
+              <div class="font-bold">CAD Models & Reports</div>
+            </div>
+            <div class="mini-card">
+              <div class="text-xs text-zinc-400">Validation</div>
+              <div class="font-bold">ANSYS + MATLAB</div>
+            </div>
+            <div class="mini-card">
+              <div class="text-xs text-zinc-400">Focus</div>
+              <div class="font-bold">Design for Performance</div>
+            </div>
+            <div class="mini-card">
+              <div class="text-xs text-zinc-400">Availability</div>
+              <div class="font-bold">Internship / Collaboration</div>
+            </div>
+          </div>
+
+          <div class="mt-8 flex gap-3 flex-wrap">
+            <a class="glass rounded-xl px-4 py-2 hover:bg-white/10 transition shadow-soft" target="_blank" href="https://www.linkedin.com/in/dheerajkrishna1223">
+              <i class="fab fa-linkedin text-cyan-300"></i>
+              <span class="ml-2 text-sm font-semibold">LinkedIn</span>
+            </a>
+            <a class="glass rounded-xl px-4 py-2 hover:bg-white/10 transition shadow-soft" target="_blank" href="https://x.com/Dheerajkum893">
+              <i class="fa-brands fa-x-twitter text-cyan-300"></i>
+              <span class="ml-2 text-sm font-semibold">X</span>
+            </a>
+            <a class="glass rounded-xl px-4 py-2 hover:bg-white/10 transition shadow-soft" href="Dheeraj_Kumar_Resume.pdf" download>
+              <i class="fa-solid fa-file-arrow-down text-cyan-300"></i>
+              <span class="ml-2 text-sm font-semibold">Resume</span>
+            </a>
+          </div>
+        </div>
+
+        <div class="absolute -inset-12 bg-cyan-400/10 blur-[100px] rounded-full -z-10"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== PROJECTS ===================== -->
+  <section id="projects" class="py-28 reveal">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="flex flex-col md:flex-row md:justify-between md:items-end gap-8 mb-10">
+        <div>
+          <h2 class="text-4xl md:text-5xl font-extrabold logo-font">Featured Projects</h2>
+          <p class="text-zinc-400 mt-2">A collection of mechanical design, sheet metal, weldment, and engineering analysis projects.</p>
+          <p class="text-zinc-500 text-sm mt-1"><span id="count"></span> projects displayed</p>
+        </div>
+
+        <div class="flex flex-col md:flex-row gap-3 md:items-center">
+          <div class="glass rounded-2xl px-4 py-3 flex items-center gap-3 shadow-soft">
+            <i class="fa-solid fa-magnifying-glass text-zinc-400"></i>
+            <input
+              id="search"
+              class="bg-transparent outline-none text-sm text-white placeholder-zinc-500 w-64"
+              placeholder="Search: chair, ansys, sheet metal..."
+              type="text"
+            />
+          </div>
+
+          <div class="flex flex-wrap gap-3" id="filters">
+            <button data-cat="all" class="px-5 py-2 rounded-full bg-white text-black font-extrabold text-sm">All</button>
+            <button data-cat="assembly" class="px-5 py-2 rounded-full glass hover:bg-white/5 text-sm">Assemblies</button>
+            <button data-cat="sheetmetal" class="px-5 py-2 rounded-full glass hover:bg-white/5 text-sm">Sheet Metal</button>
+            <button data-cat="weldments" class="px-5 py-2 rounded-full glass hover:bg-white/5 text-sm">Weldments</button>
+            <button data-cat="analysis" class="px-5 py-2 rounded-full glass hover:bg-white/5 text-sm">ANSYS / Analysis</button>
+          </div>
+        </div>
+      </div>
+
+      <div id="project-grid" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-7"></div>
+    </div>
+  </section>
+
+  <!-- ===================== SKILLS ===================== -->
+  <section id="skills" class="py-28 bg-zinc-900/35 border-y border-white/5 reveal">
+    <div class="max-w-7xl mx-auto px-6">
+      <h2 class="text-4xl md:text-5xl font-extrabold logo-font">Skills</h2>
+      <p class="text-zinc-400 mt-2 mb-12">Core tools and capabilities across design, simulation, and engineering documentation.</p>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-7">
+        <div class="glass rounded-[2rem] p-7 shadow-panel skill-card">
+          <div class="flex items-center gap-3 mb-4">
+            <i class="fa-solid fa-drafting-compass text-cyan-300 text-xl"></i>
+            <h3 class="text-xl font-extrabold">Mechanical Design</h3>
+          </div>
+          <ul class="space-y-2.5 text-zinc-300">
+            <li><i class="fa-solid fa-check text-cyan-400 mr-2"></i>SolidWorks (Assembly, Sheet Metal, Weldments)</li>
+            <li><i class="fa-solid fa-check text-cyan-400 mr-2"></i>AutoCAD Drafting</li>
+            <li><i class="fa-solid fa-check text-cyan-400 mr-2"></i>2D Drawings & Modeling Fundamentals</li>
+          </ul>
+        </div>
+
+        <div class="glass rounded-[2rem] p-7 shadow-panel skill-card">
+          <div class="flex items-center gap-3 mb-4">
+            <i class="fa-solid fa-chart-line text-cyan-300 text-xl"></i>
+            <h3 class="text-xl font-extrabold">CAE / Simulation</h3>
+          </div>
+          <ul class="space-y-2.5 text-zinc-300">
+            <li><i class="fa-solid fa-check text-cyan-400 mr-2"></i>ANSYS Static Structural</li>
+            <li><i class="fa-solid fa-check text-cyan-400 mr-2"></i>ANSYS Steady-State Thermal</li>
+            <li><i class="fa-solid fa-check text-cyan-400 mr-2"></i>Validation, Comparison & Reporting</li>
+          </ul>
+        </div>
+
+        <div class="glass rounded-[2rem] p-7 shadow-panel skill-card">
+          <div class="flex items-center gap-3 mb-4">
+            <i class="fa-solid fa-code text-cyan-300 text-xl"></i>
+            <h3 class="text-xl font-extrabold">Programming & Tools</h3>
+          </div>
+          <ul class="space-y-2.5 text-zinc-300">
+            <li><i class="fa-solid fa-check text-cyan-400 mr-2"></i>MATLAB (Validation, Plotting, Theory Comparison)</li>
+            <li><i class="fa-solid fa-check text-cyan-400 mr-2"></i>HTML • CSS • JavaScript</li>
+            <li><i class="fa-solid fa-check text-cyan-400 mr-2"></i>Excel for Engineering Data</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== CONTACT ===================== -->
+  <section id="contact" class="py-28 reveal">
+    <div class="max-w-7xl mx-auto px-6">
+      <h2 class="text-4xl md:text-5xl font-extrabold logo-font">Contact</h2>
+      <p class="text-zinc-400 mt-2 mb-12">Available for internships, freelance design work, and technical collaborations.</p>
+
+      <div class="grid lg:grid-cols-2 gap-10">
+        <div class="space-y-6">
+          <div class="glass rounded-2xl p-6 flex items-center gap-4 shadow-soft contact-card">
+            <i class="fa-solid fa-envelope text-cyan-300 text-2xl"></i>
+            <div>
+              <div class="text-zinc-400 text-sm">Email</div>
+              <a class="font-bold hover:text-cyan-300" href="mailto:dk3300649@gmail.com">dk3300649@gmail.com</a>
+            </div>
+          </div>
+
+          <div class="glass rounded-2xl p-6 flex items-center gap-4 shadow-soft contact-card">
+            <i class="fa-solid fa-phone text-cyan-300 text-2xl"></i>
+            <div>
+              <div class="text-zinc-400 text-sm">Phone</div>
+              <a class="font-bold hover:text-cyan-300" href="tel:+918882332974">+91 888 233 2974</a>
+            </div>
+          </div>
+
+          <div class="glass rounded-2xl p-6 flex items-center gap-4 shadow-soft contact-card">
+            <i class="fab fa-linkedin text-cyan-300 text-2xl"></i>
+            <div>
+              <div class="text-zinc-400 text-sm">LinkedIn</div>
+              <a class="font-bold hover:text-cyan-300" target="_blank" href="https://www.linkedin.com/in/dheerajkrishna1223">
+                linkedin.com/in/dheerajkrishna1223
+              </a>
+            </div>
+          </div>
+
+          <div class="glass rounded-2xl p-6 flex items-center gap-4 shadow-soft contact-card">
+            <i class="fa-brands fa-x-twitter text-cyan-300 text-2xl"></i>
+            <div>
+              <div class="text-zinc-400 text-sm">X (Twitter)</div>
+              <a class="font-bold hover:text-cyan-300" target="_blank" href="https://x.com/Dheerajkum893">
+                x.com/Dheerajkum893
+              </a>
+            </div>
+          </div>
+
+          <div class="glass rounded-2xl p-6 flex items-center gap-4 shadow-soft contact-card">
+            <i class="fa-solid fa-file-pdf text-cyan-300 text-2xl"></i>
+            <div>
+              <div class="text-zinc-400 text-sm">Resume</div>
+              <a class="font-bold hover:text-cyan-300" href="Dheeraj_Kumar_Resume.pdf" download>
+                Download Resume PDF
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <form
+          class="glass rounded-[2rem] p-7 space-y-4 shadow-panel"
+          onsubmit="event.preventDefault(); alert('Thank you for your interest! Please contact via email or LinkedIn for direct communication.');"
+        >
+          <input
+            type="text"
+            placeholder="Your Name"
+            required
+            class="w-full px-5 py-3.5 bg-white/5 rounded-2xl text-white placeholder-zinc-500 focus:outline-none focus:ring-2 focus:ring-cyan-400"
+          />
+          <input
+            type="email"
+            placeholder="Your Email"
+            required
+            class="w-full px-5 py-3.5 bg-white/5 rounded-2xl text-white placeholder-zinc-500 focus:outline-none focus:ring-2 focus:ring-cyan-400"
+          />
+          <textarea
+            placeholder="Your Message"
+            rows="5"
+            required
+            class="w-full px-5 py-3.5 bg-white/5 rounded-2xl text-white placeholder-zinc-500 focus:outline-none focus:ring-2 focus:ring-cyan-400"
+          ></textarea>
+          <button
+            type="submit"
+            class="w-full py-3.5 bg-cyan-400 text-black font-extrabold rounded-2xl hover:scale-[1.01] transition-transform shadow-glow"
+          >
+            Send Message
+          </button>
+          <p class="text-xs text-zinc-500 text-center">This is a static portfolio website. Please use email or LinkedIn for direct contact.</p>
+        </form>
+      </div>
+
+      <div class="pt-14 text-center text-zinc-600 text-sm">
+        © <span id="year"></span> Dheeraj Kumar • Mechanical Design & CAE Portfolio
+      </div>
+    </div>
+  </section>
+
+  <script src="index.js"></script>
+</body>
+</html>
