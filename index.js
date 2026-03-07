@@ -1,5 +1,6 @@
 /* =========================================================
    Premium Mechanical Portfolio JS
+   Improved for GitHub Pages + better mobile reliability
 ========================================================= */
 
 /* ---------- Base path helper ---------- */
@@ -91,6 +92,7 @@ function renderMainMedia(path) {
         src="${url}"
         alt="Project media"
         loading="lazy"
+        decoding="async"
         onerror="this.onerror=null; this.src='${placeholderImg}';"
       />
     </div>
@@ -526,41 +528,51 @@ function mediaLabel(path) {
   return "Image";
 }
 
+function escapeHtml(text) {
+  return String(text ?? "")
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;")
+    .replaceAll("'", "&#39;");
+}
+
 function createCard(project, idx) {
   return `
     <article
-      class="project-card-shell card-reveal"
+      class="project-card-shell card-reveal show"
       style="transition-delay:${Math.min(idx * 60, 360)}ms"
       data-project-id="${project.id}"
       role="button"
       tabindex="0"
-      aria-label="Open ${project.title}"
+      aria-label="Open ${escapeHtml(project.title)}"
     >
       <div class="project-media">
         <img
           src="${safe(project.mainImg)}"
-          alt="${project.title}"
+          alt="${escapeHtml(project.title)}"
           loading="lazy"
+          decoding="async"
           onerror="this.onerror=null; this.src='${placeholderImg}';"
         />
       </div>
 
       <div class="project-body">
         <div class="project-top">
-          <h3 class="project-title">${project.title}</h3>
-          <div class="project-arrow">
+          <h3 class="project-title">${escapeHtml(project.title)}</h3>
+          <div class="project-arrow" aria-hidden="true">
             <i class="fa-solid fa-arrow-up-right-from-square"></i>
           </div>
         </div>
 
-        <p class="project-copy">${project.desc}</p>
+        <p class="project-copy">${escapeHtml(project.desc)}</p>
 
         <div class="project-meta">
           ${(project.specs || []).slice(0, 3).map(pill).join("")}
         </div>
 
         <div class="project-footer">
-          <span class="project-category">${project.category}</span>
+          <span class="project-category">${escapeHtml(project.category)}</span>
           <span class="project-link">View Project</span>
         </div>
       </div>
@@ -584,9 +596,10 @@ function buildThumb(path, idx, activeIndex) {
       class="thumb ${idx === activeIndex ? "active" : ""}"
       data-media-index="${idx}"
       aria-label="View media ${idx + 1}"
+      type="button"
     >
       <div class="thumb-name">
-        <i class="fa-solid ${icon}" style="margin-right:8px;color:#c9d1d9;"></i>${fileName}
+        <i class="fa-solid ${icon}" style="margin-right:8px;color:#c9d1d9;"></i>${escapeHtml(fileName)}
       </div>
       <div class="thumb-meta">${mediaLabel(path)}</div>
     </button>
@@ -596,6 +609,7 @@ function buildThumb(path, idx, activeIndex) {
 /* ===================== MODAL STATE ===================== */
 let activeProject = null;
 let activeMediaIndex = 0;
+let lastFocusedCard = null;
 
 function setActiveMedia(idx) {
   if (!activeProject) return;
@@ -617,12 +631,13 @@ function setActiveMedia(idx) {
   if (counter) counter.textContent = `${activeMediaIndex + 1} / ${gallery.length}`;
 }
 
-function openProject(id) {
+function openProject(id, triggerEl = null) {
   const project = projectData.find((item) => item.id === id);
   if (!project) return;
 
   activeProject = project;
   activeMediaIndex = 0;
+  lastFocusedCard = triggerEl || document.activeElement;
 
   const portal = document.getElementById("project-portal");
   const content = document.getElementById("portal-content");
@@ -635,7 +650,7 @@ function openProject(id) {
             (d) => `
               <a href="${safe(d.path)}" download class="portal-download">
                 <i class="fa-solid fa-download"></i>
-                ${d.label}
+                ${escapeHtml(d.label)}
               </a>
             `
           )
@@ -652,10 +667,10 @@ function openProject(id) {
       <div id="portal-main-media"></div>
 
       <div class="portal-nav-wrap">
-        <button id="prevBtn" class="portal-nav">
+        <button id="prevBtn" class="portal-nav" type="button">
           <i class="fa-solid fa-arrow-left"></i> Previous
         </button>
-        <button id="nextBtn" class="portal-nav">
+        <button id="nextBtn" class="portal-nav" type="button">
           Next <i class="fa-solid fa-arrow-right"></i>
         </button>
       </div>
@@ -664,43 +679,43 @@ function openProject(id) {
     </div>
 
     <div class="portal-panel">
-      <div class="portal-headline">${project.category}</div>
-      <h2 class="portal-title">${project.title}</h2>
-      <p class="portal-summary">${project.summary}</p>
+      <div class="portal-headline">${escapeHtml(project.category)}</div>
+      <h2 class="portal-title">${escapeHtml(project.title)}</h2>
+      <p class="portal-summary">${escapeHtml(project.summary)}</p>
 
       <div class="portal-grid">
         <div class="portal-block">
           <div class="portal-block-title">Problem Solved</div>
-          <p>${project.problem}</p>
+          <p>${escapeHtml(project.problem)}</p>
         </div>
 
         <div class="portal-block">
           <div class="portal-block-title">Tools Used</div>
           <ul>
-            ${(project.tools || []).map((t) => `<li>${t}</li>`).join("")}
+            ${(project.tools || []).map((t) => `<li>${escapeHtml(t)}</li>`).join("")}
           </ul>
         </div>
 
         <div class="portal-block">
           <div class="portal-block-title">Engineering Work Done</div>
           <ul>
-            ${(project.work || []).map((item) => `<li>${item}</li>`).join("")}
+            ${(project.work || []).map((item) => `<li>${escapeHtml(item)}</li>`).join("")}
           </ul>
         </div>
 
         <div class="portal-block">
           <div class="portal-block-title">Result / Outcome</div>
-          <p>${project.result}</p>
+          <p>${escapeHtml(project.result)}</p>
         </div>
       </div>
 
       <div class="portal-specs">
-        ${(project.specs || []).map((s) => `<span class="portal-pill">${s}</span>`).join("")}
+        ${(project.specs || []).map((s) => `<span class="portal-pill">${escapeHtml(s)}</span>`).join("")}
       </div>
 
       <div class="portal-actions">
         ${downloadsHtml}
-        <button id="backBtn" class="portal-return">Return to Projects</button>
+        <button id="backBtn" class="portal-return" type="button">Return to Projects</button>
       </div>
     </div>
   `;
@@ -721,6 +736,10 @@ function openProject(id) {
     if (!btn) return;
     setActiveMedia(Number(btn.dataset.mediaIndex));
   });
+
+  setTimeout(() => {
+    document.getElementById("closePortalBtn")?.focus();
+  }, 50);
 }
 
 function closeProjectPortal() {
@@ -734,6 +753,10 @@ function closeProjectPortal() {
 
   activeProject = null;
   activeMediaIndex = 0;
+
+  if (lastFocusedCard && typeof lastFocusedCard.focus === "function") {
+    setTimeout(() => lastFocusedCard.focus(), 50);
+  }
 }
 
 function prevMedia() {
@@ -755,7 +778,7 @@ function attachGridClickOnce() {
   grid.addEventListener("click", (e) => {
     const card = e.target.closest("[data-project-id]");
     if (!card) return;
-    openProject(Number(card.dataset.projectId));
+    openProject(Number(card.dataset.projectId), card);
   });
 
   grid.addEventListener("keydown", (e) => {
@@ -764,7 +787,7 @@ function attachGridClickOnce() {
 
     if (e.key === "Enter" || e.key === " ") {
       e.preventDefault();
-      openProject(Number(card.dataset.projectId));
+      openProject(Number(card.dataset.projectId), card);
     }
   });
 
@@ -779,9 +802,9 @@ function renderGrid(data) {
   grid.innerHTML = data.map((project, i) => createCard(project, i)).join("");
   if (count) count.textContent = data.length;
 
-  requestAnimationFrame(() => {
+  setTimeout(() => {
     document.querySelectorAll(".card-reveal").forEach((el) => el.classList.add("show"));
-  });
+  }, 100);
 }
 
 function setActiveFilter(cat) {
@@ -824,6 +847,11 @@ function applyFilterAndSearch() {
 function initReveal() {
   const revealElements = document.querySelectorAll(".reveal");
 
+  if (!("IntersectionObserver" in window)) {
+    revealElements.forEach((el) => el.classList.add("show"));
+    return;
+  }
+
   const observer = new IntersectionObserver(
     (entries) => {
       entries.forEach((entry) => {
@@ -851,11 +879,21 @@ function initMobileMenu() {
   });
 }
 
+/* ===================== IMAGE PRELOAD ===================== */
+function preloadMainImages() {
+  projectData.forEach((project) => {
+    if (!project?.mainImg) return;
+    const img = new Image();
+    img.src = safe(project.mainImg);
+  });
+}
+
 /* ===================== INIT ===================== */
 document.addEventListener("DOMContentLoaded", () => {
   attachGridClickOnce();
   initReveal();
   initMobileMenu();
+  preloadMainImages();
 
   document.querySelectorAll("#filters button").forEach((btn) => {
     btn.addEventListener("click", () => {
@@ -874,6 +912,10 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   document.getElementById("closePortalBtn")?.addEventListener("click", closeProjectPortal);
+
+  document.getElementById("project-portal")?.addEventListener("click", (e) => {
+    if (e.target.id === "project-portal") closeProjectPortal();
+  });
 
   document.addEventListener("keydown", (e) => {
     const portalOpen = document.getElementById("project-portal")?.classList.contains("show");
